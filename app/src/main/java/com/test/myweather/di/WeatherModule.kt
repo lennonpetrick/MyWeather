@@ -5,10 +5,10 @@ import android.content.SharedPreferences
 import com.test.myweather.BuildConfig
 import com.test.myweather.WeatherContract
 import com.test.myweather.WeatherPresenter
-import com.test.myweather.data.WeatherRepositoryImpl
-import com.test.myweather.data.datasource.WeatherDataSource
-import com.test.myweather.data.datasource.local.LocalWeatherDataSource
-import com.test.myweather.data.datasource.remote.CloudWeatherDataSource
+import com.test.myweather.data.repository.WeatherRepositoryImpl
+import com.test.myweather.data.repository.datasource.WeatherDataSource
+import com.test.myweather.data.repository.datasource.local.LocalWeatherDataSource
+import com.test.myweather.data.repository.datasource.remote.CloudWeatherDataSource
 import com.test.myweather.domain.WeatherRepository
 import com.test.myweather.domain.usecase.WeatherUseCase
 import com.test.myweather.domain.usecase.WeatherUseCaseImpl

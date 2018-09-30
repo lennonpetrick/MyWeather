@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiHelper private constructor(val token: String) {
 
-    private val endpoint = "https://api.openweathermap.org/data/2.5"
+    private val endpoint = "https://api.openweathermap.org/data/2.5/"
     private val retrofit: Retrofit
 
     companion object {

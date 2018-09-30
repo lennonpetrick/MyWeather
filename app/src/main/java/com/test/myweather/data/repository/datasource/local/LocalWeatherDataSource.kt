@@ -1,8 +1,8 @@
-package com.test.myweather.data.datasource.local
+package com.test.myweather.data.repository.datasource.local
 
 import android.content.SharedPreferences
 import com.google.gson.Gson
-import com.test.myweather.data.datasource.WeatherDataSource
+import com.test.myweather.data.repository.datasource.WeatherDataSource
 import com.test.myweather.data.entities.CityEntity
 import com.test.myweather.shared.LocalStorage
 import io.reactivex.Single

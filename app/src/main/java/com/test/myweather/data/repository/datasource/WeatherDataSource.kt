@@ -1,4 +1,4 @@
-package com.test.myweather.data.datasource
+package com.test.myweather.data.repository.datasource
 
 import com.test.myweather.data.entities.CityEntity
 import io.reactivex.Single

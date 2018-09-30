@@ -1,0 +1,33 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="800dp"
+    android:height="214dp"
+    android:viewportWidth="800"
+    android:viewportHeight="214">
+    <path
+        android:fillColor="#fff"
+        android:fillAlpha="0.48"
+        android:name="Elipse 1"
+        android:pathData="m128.56 0c297.6 0 538.84 241.23 538.84 538.81c0 297.58 -241.25 538.81 -538.84 538.81c-297.6 0 -538.84 -241.23 -538.84 -538.81c0 -297.58 241.25 -538.81 538.84 -538.81z" />
+    <path
+        android:fillColor="#fff"
+        android:fillAlpha="0.71"
+        android:name="Elipse 1 copiar"
+        android:pathData="m797.56 32.81c375.24 0 679.44 304.18 679.44 679.41c0 375.23 -304.19 679.41 -679.44 679.41c-375.24 0 -679.44 -304.18 -679.44 -679.41c0 -375.23 304.19 -679.41 679.44 -679.41z" />
+    <path
+        android:fillColor="#fff"
+        android:name="Elipse 1 copiar 2"
+        android:pathData="m116.44 114.19c375.24 0 679.44 304.18 679.44 679.41c0 375.23 -304.19 679.41 -679.44 679.41c-375.24 0 -679.44 -304.18 -679.44 -679.41c0 -375.23 304.19 -679.41 679.44 -679.41z" />
+    <path
+        android:fillColor="#fff"
+        android:fillAlpha="0.45"
+        android:name="Elipse 1 copiar 3"
+        android:pathData="m128.56 0c297.6 0 538.84 241.23 538.84 538.81c0 297.58 -241.25 538.81 -538.84 538.81c-297.6 0 -538.84 -241.23 -538.84 -538.81c0 -297.58 241.25 -538.81 538.84 -538.81z" />
+    <path
+        android:fillColor="#fff"
+        android:name="Elipse 1 copiar 4"
+        android:pathData="m801.56 103.81c375.24 0 679.44 304.18 679.44 679.41c0 375.23 -304.19 679.41 -679.44 679.41c-375.24 0 -679.44 -304.18 -679.44 -679.41c0 -375.23 304.19 -679.41 679.44 -679.41z" />
+    <path
+        android:fillColor="#fff"
+        android:name="Elipse 1 copiar 3"
+        android:pathData="m116.44 114.19c375.24 0 679.44 304.18 679.44 679.41c0 375.23 -304.19 679.41 -679.44 679.41c-375.24 0 -679.44 -304.18 -679.44 -679.41c0 -375.23 304.19 -679.41 679.44 -679.41z" />
+</vector>

@@ -1,4 +1,4 @@
-package com.test.myweather.data.datasource.remote
+package com.test.myweather.data.repository.datasource.remote
 
 import com.test.myweather.data.entities.CityEntity
 import io.reactivex.Single
@@ -13,6 +13,6 @@ interface WeatherService {
      *
      * @return A single of weather
      */
-    @GET("/weather")
+    @GET("weather")
     fun getWeather(@QueryMap queries: Map<String, String>): Single<CityEntity>
 }

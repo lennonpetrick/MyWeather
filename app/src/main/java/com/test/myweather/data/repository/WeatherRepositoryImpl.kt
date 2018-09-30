@@ -1,6 +1,6 @@
-package com.test.myweather.data
+package com.test.myweather.data.repository
 
-import com.test.myweather.data.datasource.WeatherDataSource
+import com.test.myweather.data.repository.datasource.WeatherDataSource
 import com.test.myweather.data.entities.CityEntity
 import com.test.myweather.domain.WeatherRepository
 import com.test.myweather.shared.LocalStorage
@@ -19,7 +19,8 @@ class WeatherRepositoryImpl private constructor(
                 localDataSource: WeatherDataSource
         ): WeatherRepositoryImpl {
 
-            return INSTANCE ?: WeatherRepositoryImpl(cloudDataSource, localDataSource)
+            return INSTANCE
+                    ?: WeatherRepositoryImpl(cloudDataSource, localDataSource)
                     .apply {
                         INSTANCE = this
                     }

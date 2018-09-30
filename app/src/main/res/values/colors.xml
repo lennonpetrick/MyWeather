@@ -2,5 +2,16 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#FFFFFF</color>
+
+    <color name="background_day_start">#f09b2e</color>
+    <color name="background_day_end">#f3ca4e</color>
+
+    <color name="background_night_start">#5370fe</color>
+    <color name="background_night_end">#49c4ff</color>
+
+    <color name="background_dark_start">#615384</color>
+    <color name="background_dark_end">#627096</color>
+
+    <color name="text_grey">#70000000</color>
 </resources>

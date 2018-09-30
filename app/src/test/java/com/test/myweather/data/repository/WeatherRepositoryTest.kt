@@ -1,8 +1,9 @@
-package com.test.myweather.data
+package com.test.myweather.data.repository
 
-import com.test.myweather.data.datasource.local.LocalWeatherDataSource
-import com.test.myweather.data.datasource.remote.CloudWeatherDataSource
+import com.test.myweather.data.repository.datasource.local.LocalWeatherDataSource
+import com.test.myweather.data.repository.datasource.remote.CloudWeatherDataSource
 import com.test.myweather.data.entities.CityEntity
+import com.test.myweather.data.repository.WeatherRepositoryImpl
 import io.reactivex.Single
 import org.junit.After
 import org.junit.Before
