@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">My Weather</string>
+    <string name="menu_search">Search</string>
+    <string name="search_hint">Type a city</string>
     <string name="unknown_error">Something may be wrong :(</string>
     <string name="no_connection_error">No connection :(</string>
 

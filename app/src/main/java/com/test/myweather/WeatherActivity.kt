@@ -1,9 +1,14 @@
 package com.test.myweather
 
+import android.app.SearchManager
+import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.SearchView
+import android.view.Menu
 import com.test.myweather.di.DaggerWeatherComponent
 import com.test.myweather.di.WeatherModule
 import kotlinx.android.synthetic.main.activity_weather.*
@@ -11,6 +16,8 @@ import kotlinx.android.synthetic.main.layout_weather_bottom.*
 import kotlinx.android.synthetic.main.layout_weather_top.*
 import java.util.*
 import javax.inject.Inject
+
+
 
 class WeatherActivity : AppCompatActivity(), WeatherContract.View {
 
@@ -22,7 +29,36 @@ class WeatherActivity : AppCompatActivity(), WeatherContract.View {
         setContentView(R.layout.activity_weather)
         injectDependencies()
         setUpViews()
+        handleIntent(intent)
+    }
+
+    override fun onResume() {
         presenter.fetchCityWeather("franca")
+        super.onResume()
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        setIntent(intent)
+        handleIntent(intent)
+    }
+
+    private fun handleIntent(intent: Intent) {
+        if (intent.action == Intent.ACTION_SEARCH) {
+            val query = intent.getStringExtra(SearchManager.QUERY).trim()
+            presenter.fetchCityWeather(query)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchView = searchItem?.actionView as SearchView
+
+        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
+
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onDestroy() {
@@ -91,6 +127,10 @@ class WeatherActivity : AppCompatActivity(), WeatherContract.View {
     }
 
     private fun setUpViews() {
+        setSupportActionBar(toolbar).apply {
+            supportActionBar?.setDisplayShowTitleEnabled(false)
+        }
+
         refreshLayout.apply {
             setColorSchemeResources(R.color.colorPrimary)
             setOnRefreshListener {

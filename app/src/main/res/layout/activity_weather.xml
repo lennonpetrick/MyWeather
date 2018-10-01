@@ -19,6 +19,15 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.65"/>
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="?android:attr/actionBarSize"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark"/>
+
         <include
             layout="@layout/layout_weather_top"
             android:layout_width="0dp"
