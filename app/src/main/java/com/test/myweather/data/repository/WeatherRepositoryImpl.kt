@@ -1,9 +1,10 @@
 package com.test.myweather.data.repository
 
-import com.test.myweather.data.repository.datasource.WeatherDataSource
 import com.test.myweather.data.entities.CityEntity
+import com.test.myweather.data.repository.datasource.WeatherDataSource
 import com.test.myweather.domain.WeatherRepository
 import com.test.myweather.shared.LocalStorage
+import com.test.myweather.shared.NoConnectionException
 import io.reactivex.Observable
 
 class WeatherRepositoryImpl private constructor(
@@ -46,7 +47,13 @@ class WeatherRepositoryImpl private constructor(
 
         return Observable.concat(
                 localDataSource.getWeather(city).toObservable(),
-                remoteData)
+                remoteData.onErrorResumeNext { error: Throwable ->
+                    if (error is NoConnectionException) {
+                        Observable.empty()
+                    } else {
+                        Observable.error(error)
+                    }
+                })
     }
 
     override fun getWeather(lon: Double, lat: Double): Observable<CityEntity> {

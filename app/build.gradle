@@ -12,6 +12,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "TOKEN", getToken("TOKEN"))
     }
     buildTypes {
         release {
@@ -47,4 +48,10 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
         exclude module: 'recyclerview-v7'
     }
+}
+
+def getToken(String key) {
+    Properties properties = new Properties()
+    properties.load(new FileInputStream(rootProject.file("token.properties")))
+    return properties.getProperty(key)
 }

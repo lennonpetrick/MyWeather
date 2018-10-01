@@ -8,7 +8,7 @@ import org.junit.Test
 
 class MapperTest {
 
-    val json = "{\n" +
+    private val json = "{\n" +
             "    \"coord\": {\n" +
             "        \"lon\": 16.37,\n" +
             "        \"lat\": 48.21\n" +
@@ -21,6 +21,13 @@ class MapperTest {
             "            \"icon\": \"01d\"\n" +
             "        }\n" +
             "    ],\n" +
+            "   \"main\": {\n" +
+            "        \"temp\": 289.48,\n" +
+            "        \"pressure\": 1018,\n" +
+            "        \"humidity\": 41,\n" +
+            "        \"temp_min\": 289.15,\n" +
+            "        \"temp_max\": 290.15\n" +
+            "     },\n" +
             "    \"sys\": {\n" +
             "        \"id\": 5934,\n" +
             "        \"country\": \"AT\"\n" +
@@ -43,9 +50,15 @@ class MapperTest {
         assertThat(model.country!!.id, `is`(entity.country!!.id))
         assertThat(model.country!!.country, `is`(entity.country!!.country))
 
-        assertThat(model.weather!![0].id, `is`(entity.weathers!![0].id))
-        assertThat(model.weather!![0].main, `is`(entity.weathers!![0].main))
-        assertThat(model.weather!![0].description, `is`(entity.weathers!![0].description))
-        assertThat(model.weather!![0].icon, `is`(entity.weathers!![0].icon))
+        assertThat(model.main!!.temperature, `is`(entity.main!!.temperature))
+        assertThat(model.main!!.tempMin, `is`(entity.main!!.tempMin))
+        assertThat(model.main!!.tempMax, `is`(entity.main!!.tempMax))
+        assertThat(model.main!!.humidity, `is`(entity.main!!.humidity))
+        assertThat(model.main!!.pressure, `is`(entity.main!!.pressure))
+
+        assertThat(model.weather!!.id, `is`(entity.weathers!![0].id))
+        assertThat(model.weather!!.main, `is`(entity.weathers!![0].main))
+        assertThat(model.weather!!.description, `is`(entity.weathers!![0].description))
+        assertThat(model.weather!!.icon, `is`(entity.weathers!![0].icon))
     }
 }

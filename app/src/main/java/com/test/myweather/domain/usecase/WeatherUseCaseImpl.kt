@@ -1,6 +1,6 @@
 package com.test.myweather.domain.usecase
 
-import com.test.myweather.data.entities.City
+import com.test.myweather.domain.models.City
 import com.test.myweather.domain.WeatherRepository
 import com.test.myweather.domain.models.mapper.cityEntityToModel
 import io.reactivex.Observable

@@ -1,4 +1,4 @@
-package com.test.myweather.data.entities
+package com.test.myweather.domain.models
 
 import java.io.Serializable
 

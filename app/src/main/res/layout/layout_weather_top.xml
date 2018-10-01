@@ -9,6 +9,7 @@
     tools:background="@drawable/day_background">
 
     <ImageView
+        android:id="@+id/ivWeatherIcon"
         android:layout_width="@dimen/icon_weather_size"
         android:layout_height="@dimen/icon_weather_size"
         android:layout_margin="@dimen/icon_weather_padding"

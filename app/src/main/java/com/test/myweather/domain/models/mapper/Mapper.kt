@@ -1,6 +1,7 @@
 package com.test.myweather.domain.models.mapper
 
 import com.test.myweather.data.entities.*
+import com.test.myweather.domain.models.*
 
 internal fun cityEntityToModel(entity: CityEntity): City {
     return City(
@@ -8,7 +9,8 @@ internal fun cityEntityToModel(entity: CityEntity): City {
             name = entity.name,
             coordinates = coordEntityToModel(entity.coordinates),
             country = countryEntityToModel(entity.country),
-            weather = weatherEntityListToModelList(entity.weathers)
+            weather = weatherEntityListToModelList(entity.weathers),
+            main = mainEntityToModel(entity.main)
     )
 }
 
@@ -32,16 +34,24 @@ private fun coordEntityToModel(entity: CoordEntity?): Coord? {
     )
 }
 
-private fun weatherEntityListToModelList(entities: List<WeatherEntity>?): List<Weather>? {
+private fun mainEntityToModel(entity: MainEntity?): Main? {
+    if (entity == null)
+        return null
+
+    return Main(
+            temperature = entity.temperature,
+            tempMin = entity.tempMin,
+            tempMax = entity.tempMax,
+            humidity = entity.humidity,
+            pressure = entity.pressure
+    )
+}
+
+private fun weatherEntityListToModelList(entities: List<WeatherEntity>?): Weather? {
     if (entities == null || entities.isEmpty())
         return null
 
-    val models = arrayListOf<Weather>()
-    for (entity in entities) {
-        models.add(weatherEntityToModel(entity))
-    }
-
-    return models
+    return weatherEntityToModel(entities[0]) // Getting just the primary one
 }
 
 private fun weatherEntityToModel(entity: WeatherEntity): Weather {

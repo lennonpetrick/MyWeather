@@ -18,6 +18,7 @@
         tools:text="25"/>
 
     <TextView
+        android:id="@+id/tvTemperatureSymbol"
         style="@style/TextViewStyle.WeatherTemperatureSymbol"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,7 +26,7 @@
         app:layout_constraintStart_toEndOf="@+id/tvTemperature"
         app:layout_constraintTop_toTopOf="@+id/tvTemperature"
         app:layout_constraintVertical_bias="0.0"
-        tools:text="o" />
+        tools:text="@string/text_weather_screen_temperature_symbol" />
 
     <TextView
         android:id="@+id/tvCity"

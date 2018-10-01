@@ -1,10 +1,17 @@
 package com.test.myweather.shared
 
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-class ApiHelper private constructor(val token: String) {
+
+
+class ApiHelper private constructor(
+        val token: String,
+        interceptor: Interceptor
+) {
 
     private val endpoint = "https://api.openweathermap.org/data/2.5/"
     private val retrofit: Retrofit
@@ -14,8 +21,9 @@ class ApiHelper private constructor(val token: String) {
 
         @JvmStatic
         @Synchronized
-        fun getInstance(token: String): ApiHelper {
-            return INSTANCE ?: ApiHelper(token).apply {
+        fun getInstance(token: String, interceptor: Interceptor): ApiHelper {
+
+            return INSTANCE ?: ApiHelper(token, interceptor).apply {
                 INSTANCE = this
             }
         }
@@ -26,9 +34,14 @@ class ApiHelper private constructor(val token: String) {
     }
 
     init {
+        val client = OkHttpClient.Builder()
+                .addInterceptor(interceptor)
+                .build()
+
         retrofit = Retrofit
                 .Builder()
                 .baseUrl(endpoint)
+                .client(client)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()

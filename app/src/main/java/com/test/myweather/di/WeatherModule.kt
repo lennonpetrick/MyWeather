@@ -13,8 +13,10 @@ import com.test.myweather.domain.WeatherRepository
 import com.test.myweather.domain.usecase.WeatherUseCase
 import com.test.myweather.domain.usecase.WeatherUseCaseImpl
 import com.test.myweather.shared.ApiHelper
+import com.test.myweather.shared.NetworkInterceptor
 import dagger.Module
 import dagger.Provides
+import okhttp3.Interceptor
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -51,9 +53,15 @@ class WeatherModule(private val context: Context) {
     }
 
     @Provides
+    @Inject
     @Named("remote")
-    fun cloudDataSource(): WeatherDataSource {
-        return CloudWeatherDataSource(ApiHelper.getInstance(""))
+    fun cloudDataSource(interceptor: Interceptor): WeatherDataSource {
+        return CloudWeatherDataSource(ApiHelper.getInstance(BuildConfig.TOKEN, interceptor))
+    }
+
+    @Provides
+    fun interceptor(): Interceptor {
+        return NetworkInterceptor(context)
     }
 
     @Provides
