@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- TEXT VIEW FONT SIZES -->
+    <dimen name="text_size_large">140sp</dimen>
+    <dimen name="text_size_medium">38sp</dimen>
+    <dimen name="text_size_small">21sp</dimen>
+    <dimen name="symbol_temperature_font_size">63sp</dimen>
+
+    <dimen name="text_date_margin_bottom">35dp</dimen>
+    <dimen name="text_city_margin_bottom">14dp</dimen>
+    <dimen name="text_weather_description_margin_end">35dp</dimen>
+
+    <dimen name="icon_weather_padding">35dp</dimen>
+    <dimen name="icon_weather_size">175dp</dimen>
+
+    <dimen name="image_waves_height">87dp</dimen>
+</resources>
