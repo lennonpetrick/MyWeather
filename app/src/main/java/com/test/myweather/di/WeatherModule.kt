@@ -2,6 +2,7 @@ package com.test.myweather.di
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.location.LocationManager
 import com.test.myweather.BuildConfig
 import com.test.myweather.WeatherContract
 import com.test.myweather.WeatherPresenter
@@ -13,6 +14,7 @@ import com.test.myweather.domain.WeatherRepository
 import com.test.myweather.domain.usecase.WeatherUseCase
 import com.test.myweather.domain.usecase.WeatherUseCaseImpl
 import com.test.myweather.shared.ApiHelper
+import com.test.myweather.shared.LocationHelper
 import com.test.myweather.shared.NetworkInterceptor
 import dagger.Module
 import dagger.Provides
@@ -78,4 +80,9 @@ class WeatherModule(private val context: Context) {
                 Context.MODE_PRIVATE)
     }
 
+    @Provides
+    fun locationHelper(): LocationHelper {
+        return LocationHelper(context.getSystemService(Context.LOCATION_SERVICE)
+                as LocationManager)
+    }
 }

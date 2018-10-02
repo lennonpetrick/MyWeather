@@ -16,7 +16,6 @@ class WeatherPresenter(
 ) : WeatherContract.Presenter {
 
     private val disposable = CompositeDisposable()
-    private var lastObservable: Observable<City>? = null
 
     override fun destroy() {
         disposable.clear()
@@ -25,19 +24,15 @@ class WeatherPresenter(
     }
 
     override fun fetchCityWeather(city: String) {
-        subscribeToWeather(useCase!!.getWeather(city).apply {
-            lastObservable = this
-        })
+        subscribeToWeather(useCase!!.getWeather(city))
     }
 
     override fun fetchCurrentWeather(lon: Double, lat: Double) {
-        subscribeToWeather(useCase!!.getWeather(lon, lat).apply {
-            lastObservable = this
-        })
+        subscribeToWeather(useCase!!.getWeather(lon, lat))
     }
 
     override fun refresh() {
-        lastObservable?.let { subscribeToWeather(it) }
+        subscribeToWeather(useCase!!.refresh())
     }
 
     private fun subscribeToWeather(observable: Observable<City>) {
@@ -52,6 +47,8 @@ class WeatherPresenter(
                     view?.dismissLoading()
                     view?.showError(it.message)
                     it.printStackTrace()
+                }, {
+                    view?.dismissLoading()
                 }))
     }
 

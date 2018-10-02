@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FFFFFF</color>
+    <color name="colorPrimary">#5370fe</color>
+    <color name="colorPrimaryDark">#5370fe</color>
+    <color name="colorAccent">#5370fe</color>
 
     <color name="background_day_start">#f09b2e</color>
     <color name="background_day_end">#f3ca4e</color>
@@ -14,4 +14,5 @@
     <color name="background_dark_end">#627096</color>
 
     <color name="text_grey">#70000000</color>
+    <color name="text_white">#FFFFFF</color>
 </resources>

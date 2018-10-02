@@ -12,6 +12,8 @@ class WeatherRepositoryImpl private constructor(
         private val localDataSource: WeatherDataSource
 ) : WeatherRepository {
 
+    private var refreshObservable: Observable<CityEntity>? = null
+
     companion object {
         private var INSTANCE: WeatherRepositoryImpl? = null
 
@@ -32,6 +34,19 @@ class WeatherRepositoryImpl private constructor(
         }
     }
 
+    override fun refresh(): Observable<CityEntity> {
+        if (refreshObservable != null) {
+            return refreshObservable!!
+        }
+
+        val local = localDataSource as LocalStorage
+        if (local.isCached()) {
+            return localDataSource.getWeather("").toObservable()
+        }
+
+        return Observable.empty()
+    }
+
     override fun getWeather(city: String): Observable<CityEntity> {
         val local = localDataSource as LocalStorage
         val remoteData = cloudDataSource.getWeather(city)
@@ -42,7 +57,7 @@ class WeatherRepositoryImpl private constructor(
                 .toObservable()
 
         if (!local.isCached()) {
-            return remoteData
+            return remoteData.also { cacheLastCall(it) }
         }
 
         return Observable.concat(
@@ -53,7 +68,7 @@ class WeatherRepositoryImpl private constructor(
                     } else {
                         Observable.error(error)
                     }
-                })
+                }).also { cacheLastCall(it) }
     }
 
     override fun getWeather(lon: Double, lat: Double): Observable<CityEntity> {
@@ -66,11 +81,21 @@ class WeatherRepositoryImpl private constructor(
                 .toObservable()
 
         if (!local.isCached()) {
-            return remoteData
+            return remoteData.also { cacheLastCall(it) }
         }
 
         return Observable.concat(
                 localDataSource.getWeather(lon, lat).toObservable(),
-                remoteData)
+                remoteData.onErrorResumeNext { error: Throwable ->
+                    if (error is NoConnectionException) {
+                        Observable.empty()
+                    } else {
+                        Observable.error(error)
+                    }
+                }).also { cacheLastCall(it) }
+    }
+
+    private fun cacheLastCall(observable: Observable<CityEntity>) {
+        refreshObservable = observable
     }
 }
